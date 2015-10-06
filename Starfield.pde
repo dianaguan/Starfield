@@ -11,7 +11,8 @@ void draw()
 class NormalParticle
 {
 	//your code here
-	double X, double Y, int Color, double Angle, double Speed;
+	double X, double Y, double Angle, double Speed;
+	 int Color;
 	NormalParticle()
 	{
 		X = 400;
