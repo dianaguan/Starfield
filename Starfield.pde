@@ -1,15 +1,22 @@
 //your code here
-NormalParticle one = new NormalParticle();
+NormalParticle [] one;
 void setup()
 {
 	//your code here
 	size(800,500);
+	
 }
 void draw()
 {
 	//your code here
-	one.move();
-	one.show();
+	one = new NormalParticle[100];
+	for (int i = 0; i<one.length; i++)
+	{
+		one[i] = new NormalParticle();
+		one[i].move();
+		one[i].show();
+	}
+	
 
 }
 class NormalParticle
@@ -17,12 +24,12 @@ class NormalParticle
 	//your code here
 	double X, Y, Angle, Speed;
 	int Color;
-	NormalParticle()
+	NormalParticle(x,y)
 	{
-		X = 400;
-		Y = 250;
+		X = x;
+		Y = y;
 		Angle = 30;
-		Speed = 50;
+		Speed = 40;
 		Color = color((int)(Math.random()*256),(int)(Math.random()*256), (int)(Math.random()*256));
 	}
 	void move()
