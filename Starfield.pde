@@ -11,7 +11,7 @@ void setup()
 	{
 		one[i] = new NormalParticle();
 	}
-
+	one[0] = new OddballParticle();
 
 	
 }
@@ -38,7 +38,7 @@ class NormalParticle
 		dX = 400;
 		dY = 250;
 		ang1 = Math.PI*2*Math.random();
-		dSpeed = (int)(Math.random()*15);
+		dSpeed = (int)((Math.random()*15)+1);
 		dColor = color((int)(Math.random()*256),(int)(Math.random()*256), (int)(Math.random()*256));
 	}
 	public void move()
@@ -62,14 +62,19 @@ interface Particle
 class OddballParticle implements Particle//uses an interface
 {
 	// //your code here
+	double bX;
+	OddballParticle()
+	{
+		bX = 400;
+	}
 	public void show()
 	{
 		fill(120,36,155);
-		ellipse(50, 200, 10,10);
+		ellipse((int)bX, 200, 10,10);
 	}
 	public void move()
 	{
-		
+		bX++;
 	}
 }
 class JumboParticle //uses inheritance
