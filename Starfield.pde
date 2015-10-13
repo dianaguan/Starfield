@@ -8,8 +8,11 @@ void setup()
 	one = new Particle[200];
 	for (int i = 0; i<one.length; i++)
 	{
-		if(i==1){
+		if(i==0){
 			one[i] = new OddballParticle();
+		}
+		if(i==1){
+			one[i] = new JumboParticle();
 		}
 		if(i>1){
 			one[i] = new NormalParticle();
@@ -19,7 +22,6 @@ void setup()
 void draw()
 {
 	//your code here
-	one = new Particle[200];
 	background(255);
 	for (int i = 0; i<one.length; i++)
 	{
@@ -45,19 +47,32 @@ class NormalParticle implements Particle
 		dX = 400;
 		dY = 250;
 		ang1 = Math.PI*2*Math.random();
-		dSpeed = (int)((Math.random()*15)+1);
-		dColor = color((int)(Math.random()*256),(int)(Math.random()*256), (int)(Math.random()*256));
+		dSpeed = (float)((Math.random()*15)+1);
+		dColor = color((float)(Math.random()*256),(float)(Math.random()*256), (float)(Math.random()*256));
 	}
 	public void move()
 	{
 		dX = Math.cos(ang1)*dSpeed+dX;
 		dY = Math.sin(ang1)*dSpeed+dY;
+		//ang1++;
 	}
 	public void show()
 	{
 		fill(dColor);
 		noStroke();
 		ellipse((int)dX,(int)dY,20,20);
+	}
+	public void back()
+	{
+		if(dX>800||dX<2)
+		{
+			dX = 400;
+		}
+		if(dY>500||dY<2)
+		{
+			dY = 250; 
+		}
+		
 	}
 }
 
@@ -69,9 +84,9 @@ class OddballParticle implements Particle
 	{
 		dX = 400;
 		dY = 250;
-		ang1 = Math.PI*2*Math.random();
-		dSpeed = (int)(Math.random()*4);
-		dColor = color((int)(Math.random()*256),(int)(Math.random()*256), (int)(Math.random()*256));
+		ang1 = Math.PI*2*Math.random()+2;
+		dSpeed = (float)(Math.random()*4);
+		dColor = color((float)(Math.random()*256),(float)(Math.random()*256), (float)(Math.random()*256));
 	}
 	public void move()
 	{
@@ -80,13 +95,33 @@ class OddballParticle implements Particle
 	}
 	public void show()
 	{
-		fill(0);
+		fill(255,255,0);
 		noStroke();
 		ellipse((int)dX,(int)dY,100,100);
 	}
 }
-class JumboParticle //uses inheritance
+class JumboParticle extends NormalParticle//uses inheritance
 {
 	//your code here
+	double dX, dY, ang1, dSpeed;
+	int dColor;
+	JumboParticle()
+	{
+		dX = 400;
+		dY = 250;
+		ang1 = Math.PI*2*Math.random()+2;
+		dSpeed = (float)(Math.random()*2);
+		//dColor = color((float)(Math.random()*256),(float)(Math.random()*256), (float)(Math.random()*256));
+	}
+	public void move()
+	{
+		dY = Math.sin(ang1)*dSpeed+dY;
+	}
+	public void show()
+	{
+		fill(255,204,0);
+		noStroke();
+		ellipse((int)dX,(int)dY,50,50);
+	}
 }
 
