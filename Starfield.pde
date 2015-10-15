@@ -124,4 +124,3 @@ class JumboParticle extends NormalParticle//uses inheritance
 		ellipse((int)dX,(int)dY,50,50);
 	}
 }
-
