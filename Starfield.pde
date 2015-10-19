@@ -1,6 +1,7 @@
 //your code here
 Particle [] one;
 Particle [] two;
+Particle [] three;
 
 void setup()
 {
@@ -8,6 +9,7 @@ void setup()
 	size(800,500);
 	one = new Particle[200];
 	two = new Particle[200];
+	three = new Particle [200];
 	for (int i = 0; i<one.length; i++)
 	{
 		if(i==0){
@@ -23,11 +25,14 @@ void setup()
 	for (int j = 0; j< two.length; j++){
 		two[j] = new NormalParticle(300,100);
 	}
+	for (int k = 0; k< three.length; k++){
+		three[k] = new NormalParticle(600,400);
+	}
 }
 void draw()
 {
 	//your code here
-	background(255);
+	background(0);
 	frameRate(10);
 	for (int i = 0; i<one.length; i++)
 	{
@@ -38,6 +43,11 @@ void draw()
 	{
 		two[j].move();
 		two[j].show();
+	}
+	for (int k = 0; k<three.length; k++)
+	{
+		three[k].move();
+		three[k].show();
 	}
 }
 interface Particle
@@ -71,7 +81,7 @@ class NormalParticle implements Particle
 	{
 		fill(dColor);
 		noStroke();
-		ellipse((int)dX,(int)dY,20,20);
+		ellipse((int)dX,(int)dY,5,5);
 	}
 	public void back()
 	{
