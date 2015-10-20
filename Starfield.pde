@@ -7,7 +7,7 @@ void setup()
 {
 	//your code here
 	size(800,500);
-	one = new Particle[200];
+	one = new Particle[800];
 	two = new Particle[200];
 	three = new Particle [200];
 	for (int i = 0; i<one.length; i++)
@@ -22,33 +22,56 @@ void setup()
 			one[i] = new NormalParticle(400,250);
 		}
 	}
-	for (int j = 0; j< two.length; j++){
-		two[j] = new NormalParticle(300,100);
-	}
-	for (int k = 0; k< three.length; k++){
-		three[k] = new NormalParticle(600,400);
-	}
+	// for (int j = 0; j< two.length; j++){
+	// 	two[j] = new NormalParticle(300,100);
+	// }
+	// for (int k = 0; k< three.length; k++){
+	// 	three[k] = new NormalParticle(600,400);
+	// }
 }
 void draw()
 {
 	//your code here
 	background(0);
-	frameRate(10);
+	// frameRate(10);
 	for (int i = 0; i<one.length; i++)
 	{
 		one[i].move();
 		one[i].show();
+		if(i>1)
+		{
+			((NormalParticle)one[i]).back();
+		}
+
+
 	}
-	for (int j = 0; j<two.length; j++)
-	{
-		two[j].move();
-		two[j].show();
-	}
-	for (int k = 0; k<three.length; k++)
-	{
-		three[k].move();
-		three[k].show();
-	}
+	// if(mousePressed)
+	// 	{
+	// 		//one = new Particle[800];
+	// 		for (int i= 0; i<one.length; i++){
+	// 		((NormalParticle)one[i]).bback();
+	// 		}
+	// 	}
+	
+	// for (int j = 0; j<two.length; j++)
+	// {
+	// 	two[j].move();
+	// 	two[j].show();
+	// 	if(j>1)
+	// {
+	// 	((NormalParticle)one[j]).back();
+	// }
+	// }
+	// for (int k = 0; k<three.length; k++)
+	// {
+	// 	three[k].move();
+	// 	three[k].show();
+	// 	if(k>1)
+	// {
+	// 	((NormalParticle)one[k]).back();
+	// }
+	// }
+	
 }
 interface Particle
 {
@@ -68,14 +91,22 @@ class NormalParticle implements Particle
 		dX = x;
 		dY = y;
 		ang1 = Math.PI*2*Math.random();
-		dSpeed = (float)((Math.random()*15)+1);
+		dSpeed = (int)((Math.random()*3)+1);
 		dColor = color((float)(Math.random()*256),(float)(Math.random()*256), (float)(Math.random()*256));
 	}
 	public void move()
 	{
-		dX = Math.cos(ang1)*dSpeed+dX;
-		dY = Math.sin(ang1)*dSpeed+dY;
-		ang1+=100;
+		// dX = Math.cos(ang1)*dSpeed+dX;
+		// dY = Math.sin(ang1)*dSpeed+dY;
+		// ang1+=100;
+		dX+=(Math.cos(ang1)*dSpeed);
+		dY+=(Math.sin(ang1)*dSpeed);
+	
+	}
+	void bback()
+	{
+		dX-=(Math.cos(ang1)*dSpeed);
+		dY-=(Math.sin(ang1)*dSpeed);
 	}
 	public void show()
 	{
